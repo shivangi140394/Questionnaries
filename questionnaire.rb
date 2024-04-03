@@ -40,20 +40,19 @@ def calculate_rating(responses)
   (yes_count.to_f / total_questions * 100).round(2)
 end
 
-# Method to report the rating for each run and the overall average rating
 def do_report(store)
   total_rating = 0
   store.transaction(true) do
     store["responses"] ||= []
     store["responses"].each do |responses|
       rating = calculate_rating(responses)
-      puts "Rating for this run: #{rating}%"
+      puts "Rating for this run: #{rating}%" # This line is responsible for outputting the rating for each run
       total_rating += rating
     end
   end
   total_runs = store.transaction { store["responses"].size }
   average_rating = total_runs.positive? ? (total_rating / total_runs).round(2) : 0
-  puts "Overall average rating for all runs: #{average_rating}%"
+  puts "Overall average rating for all runs: #{average_rating}%" # This line is responsible for outputting the overall average rating
 end
 
 # Initialize PStore

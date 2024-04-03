@@ -5,6 +5,19 @@ require_relative '../questionnaire'
 
 
 RSpec.describe "Questionnaire" do
+
+  let(:test_responses) do
+    {
+      "q1" => "yes",
+      "q2" => "no",
+      "q3" => "yes",
+      "q4" => "yes",
+      "q5" => "no"
+    }
+  end
+
+  store = PStore.new(STORE_NAME)
+
   describe "#do_prompt" do
     let(:dummy_responses) { { "q1" => "yes", "q2" => "no", "q3" => "yes", "q4" => "yes", "q5" => "no" } }
 
